@@ -18,7 +18,6 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -27,8 +26,8 @@ def profile(request):
                                    request.FILES,
                                    instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
-            u_form.save.self()
-            p_form.save.self()
+            u_form.save()
+            p_form.save()
             messages.success(request, f'Your account has been updated Successfully!')
             return redirect('profile')
 
